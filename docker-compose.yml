@@ -1,0 +1,29 @@
+version: "3"
+services:
+  server:
+    container_name: "server"
+    restart: always
+    build: ./server/
+    ports:
+      - "3000:3000"
+    command: npm run start:dev
+  pg:
+    image: "postgres:12"
+    environment:
+      - POSTGRES_USER="${PG_USER}"
+      - POSTGRES_PASSWORD="${PG_PASSWORD}"
+      - POSTGRES_DB="${PG_DB}"
+    container_name: "postgres"
+
+    ports:
+      - "5432:5432"
+    volumes:
+      # - ./pg/db_data:/var/lib/postgresql/data    mounting folder for db  on linux
+      - /var/lib/postgresql/data # for windows respectively
+
+  client:
+    container_name: "client"
+    build: ./client/
+    ports:
+      - "3001:3001"
+    stdin_open: true
