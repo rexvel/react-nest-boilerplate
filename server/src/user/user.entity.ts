@@ -8,7 +8,7 @@ import {
 import { UserRO } from './user.dto';
   
   
-  @Entity('user')
+  @Entity()
   export class UserEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;

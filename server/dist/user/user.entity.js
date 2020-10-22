@@ -66,7 +66,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserEntity.prototype, "hashPassword", null);
 UserEntity = __decorate([
-    typeorm_1.Entity('user')
+    typeorm_1.Entity()
 ], UserEntity);
 exports.UserEntity = UserEntity;
 //# sourceMappingURL=user.entity.js.map
