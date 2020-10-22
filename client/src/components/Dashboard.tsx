@@ -1,7 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const Dashboard = ({ setAuth }) => {
+export interface IDashboardProps  {
+    setAuth: (setAuth: boolean) => void
+}
+
+type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
+
+
+const Dashboard : FC<IDashboardProps>= ({ setAuth }) => {
   const [name, setName] = useState("");
 
   const getProfile = async () => {
@@ -18,7 +25,7 @@ const Dashboard = ({ setAuth }) => {
     }
   };
 
-  const logout = async e => {
+  const logout = async (e:ButtonEvent) => {
     e.preventDefault();
     try {
       localStorage.removeItem("token");
