@@ -1,3 +1,5 @@
+import { Button, Grid, makeStyles, TextField, Theme } from "@material-ui/core";
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import React, { FC, Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -6,6 +8,13 @@ export interface IRegisterProps {
     setAuth: (isAuth: boolean) => void
 }
 
+const useStyles = makeStyles((theme: Theme) => ({
+    button: {
+        margin: theme.spacing(1),
+    },
+}));
+
+
 
 const Register: FC<IRegisterProps> = ({ setAuth }) => {
     const [inputs, setInputs] = useState({
@@ -13,16 +22,16 @@ const Register: FC<IRegisterProps> = ({ setAuth }) => {
         username: "",
     });
 
+    const classes = useStyles({});
+
     const { password, username } = inputs;
 
-
-
-    const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-        const { name, value } = e.target as HTMLButtonElement;
-        setInputs({ ...inputs, [name]: value });
+    const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setInputs({ ...inputs, [e.target.name]: e.target.value });
     }
 
-    const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmitForm = async (e) => {
+        console.log("gay")
         e.preventDefault();
         try {
             const body = { username, password };
@@ -50,27 +59,56 @@ const Register: FC<IRegisterProps> = ({ setAuth }) => {
 
     return (
         <Fragment>
-            <h1 className="mt-5 text-center">Register</h1>
-            <input
-                type="text"
-                name="username"
-                value={username}
-                placeholder="name"
-                onChange={(e) => onChange(e)}
-                className="form-control my-3"
-            />
-            <form onSubmit={onSubmitForm}>
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    placeholder="password"
-                    onChange={(e) => onChange(e)}
-                    className="form-control my-3"
-                />
-                <button className="btn btn-success btn-block">Submit</button>
-            </form>
-            <Link to="/login">login</Link>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}
+            >
+                <Grid item xs={12}>
+                    <h1 className="mt-5 text-center">Register</h1>
+                    <form id="register-user-form" onSubmit={onSubmitForm}>
+                        <TextField
+                            value={username}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="username"
+                            label="Username"
+                            name="username"
+                            autoComplete="username"
+                            autoFocus
+                            onChange={e => onChange(e)}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            onChange={e => onChange(e)}
+                            value={password}
+                        />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}
+                            endIcon={<AccountBoxIcon></AccountBoxIcon>}
+                            type="submit"
+                        >
+                            Send
+                </Button>
+                    </form>
+                    <Link to="/login"> Sign in</Link>
+                </Grid  >
+            </Grid>
         </Fragment>
     );
 };

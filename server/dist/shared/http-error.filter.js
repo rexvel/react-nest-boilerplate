@@ -26,7 +26,7 @@ let HttpErrorFilter = class HttpErrorFilter {
     }
 };
 HttpErrorFilter = __decorate([
-    common_1.Catch()
+    common_1.Catch(common_1.HttpException)
 ], HttpErrorFilter);
 exports.HttpErrorFilter = HttpErrorFilter;
 //# sourceMappingURL=http-error.filter.js.map

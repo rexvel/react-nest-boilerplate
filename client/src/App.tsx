@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
+import Container from '@material-ui/core/Container';
+import React, { useEffect, useState } from "react";
 import {
     BrowserRouter as Router,
     Redirect,
@@ -37,12 +38,12 @@ const App = () => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const setAuth = (isAuth: boolean) : void=> {
+    const setAuth = (isAuth: boolean): void => {
         setIsAuthenticated(isAuth);
     };
 
     return (
-        <Fragment>
+        <Container component="main" maxWidth="xs">
             <Router>
                 <div className="container">
                     <Switch>
@@ -85,7 +86,7 @@ const App = () => {
                     </Switch>
                 </div>
             </Router>
-        </Fragment>
+        </Container>
     );
 }
 
