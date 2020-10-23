@@ -53,8 +53,8 @@ const Login: FC<ILoginProps> = ({ setAuth }) => {
 
             const parseRes = await response.json();
 
-            if (parseRes.jwtToken) {
-                localStorage.setItem("token", parseRes.jwtToken);
+            if (parseRes.token) {
+                localStorage.setItem("token", parseRes.token);
                 setAuth(true);
                 toast.success("Logged in Successfully");
             } else {

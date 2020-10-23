@@ -31,7 +31,6 @@ const Register: FC<IRegisterProps> = ({ setAuth }) => {
     }
 
     const onSubmitForm = async (e) => {
-        console.log("gay")
         e.preventDefault();
         try {
             const body = { username, password };
@@ -43,9 +42,9 @@ const Register: FC<IRegisterProps> = ({ setAuth }) => {
                 body: JSON.stringify(body),
             });
             const parseRes = await response.json();
-
-            if (parseRes.jwtToken) {
-                localStorage.setItem("token", parseRes.jwtToken);
+            console.log(parseRes)
+            if (parseRes.token) {
+                localStorage.setItem("token", parseRes.token);
                 setAuth(true);
                 toast.success("Register Successfully");
             } else {

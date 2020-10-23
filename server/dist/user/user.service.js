@@ -34,7 +34,7 @@ let UserService = class UserService {
         return user.toResponseObject();
     }
     async register(data) {
-        const { username } = data;
+        const { username, } = data;
         let user = await this.userRepository.findOne({ where: { username } });
         if (user) {
             throw new common_1.HttpException('User already exists', common_1.HttpStatus.BAD_REQUEST);
