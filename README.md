@@ -13,7 +13,7 @@ Small fullstack-boilerplate built on react & nest with auth feature;
 - Infrastructure
   - [Docker](https://www.docker.com/)
 
-### Instalation
+### Installation
 All you need to do is just to:
    * clone the project
    * make sure , that docker installed 
